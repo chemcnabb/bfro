@@ -8,8 +8,8 @@ class Sighting(models.Model):  #a collection, arranged for display
 
     url = models.CharField("Report URL", blank=True, null=True, max_length=255)
     classification = models.CharField(max_length=1, choices=CLASSIFICATION_CHOICES, default='C', blank=True, null=True)
-    report_id = Field()
-    description = Field()
+    report_id = models.PositiveIntegerField(default=0, blank=False, null=False, unique=True)
+    description = models.TextField(blank=True, null=True)
     year = Field()
     season = Field()
     month = Field()
@@ -48,7 +48,7 @@ class Sighting(models.Model):  #a collection, arranged for display
     video_title = models.CharField("Youtube Link Title", blank=True, null=True, default="WATCH THIS VIDEO",
                                    max_length=255)
 
-    description = models.TextField(blank=True, null=True)
+    description =
     print_link = models.FileField("PDF", max_length=200, blank=True, upload_to="lookbooks/files/",
                                  null=True)
     published = models.BooleanField(default=False)
