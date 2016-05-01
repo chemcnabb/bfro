@@ -49,7 +49,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bfro.apps.map',
+    'bfro.apps.sighting',
+    'bfro.apps.utility',
+    'timelinejs',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,18 +67,17 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'bfro.urls'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-)
+MEDIA_ROOT = root('bfro/media')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             root('templates'),
-            TEMPLATE_DIRS,
+            os.path.join(BASE_DIR,  'templates'),
 
         ],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -84,12 +85,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',  # LANGUAGE_CODE
-                'showroom.context_processors.showroom_context_processors.UA_CODE',
+
             ],
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ],
+
         },
     },
 ]
